@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playlist Platform</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+    <!-- Custom CSS -->
+    <style>
+      /* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #f7f9fc;
+    color: #2c3e50;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #3498db;
+    padding: 1rem;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+header .logo span {
+    color: #f1c40f;
+}
+
+header nav .search-form {
+    display: flex;
+}
+
+header nav .search-form input {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 5px;
+}
+
+header nav .search-form button {
+    background-color: #2980b9;
+    border: none;
+    color: white;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+header .user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+header .user-profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+/* Sidebar */
+.side-bar {
+    width: 250px;
+    background-color: #2c3e50;
+    padding: 2rem;
+    height: calc(100vh - 60px);
+    position: sticky;
+    top: 60px;
+}
+
+.side-bar .navbar a {
+    display: block;
+    color: white;
+    padding: 1rem 0;
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+
+.side-bar .navbar a:hover {
+    background-color: #34495e;
+}
+
+/* Main Content */
+.container {
+    display: flex;
+    flex-grow: 1;
+}
+
+.content {
+    flex-grow: 1;
+    padding: 2rem;
+}
+
+/* Playlist Section */
+.playlist-section {
+    margin-bottom: 2rem;
+}
+
+.playlist-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.playlist-item {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.playlist-item:hover {
+    transform: scale(1.05);
+}
+
+.playlist-item img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.playlist-item h3 {
+    margin-top: 1rem;
+    font-size: 1.1rem;
+}
+
+/* Video Section */
+.video-section {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 2rem;
+}
+
+.video-player {
+    text-align: center;
+}
+
+.video-player video {
+    width: 100%;
+    max-width: 1000px;
+    border-radius: 10px;
+}
+
+.video-details {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.save-playlist-btn {
+    background-color: #f1c40f;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.save-playlist-btn:hover {
+    background-color: #e67e22;
+}
+
+/* Footer */
+footer {
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin-top: auto;
+}
+
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="logo">H.E.<span>STUDY</span></div>
+    <nav>
+        <form class="search-form">
+            <input type="text" placeholder="Search courses..." id="search-input">
+            <button type="submit" class="fas fa-search"></button>
+        </form>
+    </nav>
+</header>
+
+<div class="container">
+    <!-- Sidebar -->
+    <div class="side-bar">
+        <nav class="navbar">
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="#"><i class="fas fa-book"></i> My Learning</a>
+            <a href="#"><i class="fas fa-play-circle"></i> Playlists</a>
+            <a href="#"><i class="fas fa-user"></i> Progress</a>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <!-- Playlist Section -->
+        <section class="playlist-section">
+            <h2>Study Playlists</h2>
+            <div class="playlist-container" id="playlist-container">
+                <!-- Playlist items will be loaded dynamically here -->
+            </div>
+        </section>
+
+        <!-- Video Player Section -->
+        <section class="video-section" id="video-section">
+            <div class="video-player">
+                <video id="main-video" controls></video>
+                <h3 id="video-title">Select a video to play</h3>
+            </div>
+            <div class="video-details">
+                <p>Current Playlist: <span id="current-playlist">None</span></p>
+                <button class="save-playlist-btn"><i class="fas fa-bookmark"></i> Save Playlist</button>
+            </div>
+        </section>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer>
+    &copy; 2024 StudyHub | All rights reserved.
+</footer>
+
+<!-- Custom JS -->
+<script>
+   // Playlist data (could be dynamic from backend)
+const playlists = [
+    {
+        title: 'Complete HTML Course',
+        image: 'images/html.png',
+        videos: [
+            { title: 'HTML Basics', src: 'videos/html-basics.mp4' },
+            { title: 'HTML Forms', src: 'videos/html-forms.mp4' },
+            { title: 'HTML5 Features', src: 'videos/html5-features.mp4' }
+        ]
+    },
+    {
+        title: 'CSS Mastery',
+        image: 'images/css.png',
+        videos: [
+            { title: 'CSS Grid', src: 'videos/css-grid.mp4' },
+            { title: 'CSS Flexbox', src: 'videos/css-flexbox.mp4' },
+            { title: 'CSS Animations', src: 'videos/css-animations.mp4' }
+        ]
+    },
+    {
+        title: 'JavaScript Essentials',
+        image: 'images/javascript.png',
+        videos: [
+            { title: 'JavaScript Basics', src: 'videos/js-basics.mp4' },
+            { title: 'JavaScript Functions', src: 'videos/js-functions.mp4' },
+            { title: 'JavaScript DOM Manipulation', src: 'videos/js-dom.mp4' }
+        ]
+    }
+];
+
+const playlistContainer = document.getElementById('playlist-container');
+const videoSection = document.getElementById('video-section');
+const mainVideo = document.getElementById('main-video');
+const videoTitle = document.getElementById('video-title');
+const currentPlaylist = document.getElementById('current-playlist');
+
+// Load playlists
+function loadPlaylists() {
+    playlists.forEach((playlist, index) => {
+        const playlistItem = document.createElement('div');
+        playlistItem.classList.add('playlist-item');
+        playlistItem.innerHTML = `
+            <img src="${playlist.image}" alt="${playlist.title}">
+            <h3>${playlist.title}</h3>
+        `;
+        playlistItem.addEventListener('click', () => {
+            loadPlaylistVideos(index);
+        });
+        playlistContainer.appendChild(playlistItem);
+    });
+}
+
+// Load playlist videos
+function loadPlaylistVideos(playlistIndex) {
+    const selectedPlaylist = playlists[playlistIndex];
+    currentPlaylist.textContent = selectedPlaylist.title;
+    mainVideo.src = selectedPlaylist.videos[0].src;
+    videoTitle.textContent = selectedPlaylist.videos[0].title;
+
+    // Create playlist video list dynamically
+    let videoListHTML = '';
+    selectedPlaylist.videos.forEach((video, index) => {
+        videoListHTML += `<li onclick="playVideo(${playlistIndex}, ${index})">${video.title}</li>`;
+    });
+   }
+
+</script>
+</body>
+</html>

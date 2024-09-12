@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to H.E.STUDY</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            background: linear-gradient(270deg, #2E86C1, #1F618D);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-in-out forwards, gradientAnimation 15s ease infinite;
+        }
+        h1 {
+            color: #fff;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: slideIn 1s ease forwards;
+        }
+        h2 {
+            color: #fff;
+        }
+        p, ul {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #fff;
+        }
+        ul {
+            list-style: none;
+        }
+        ul li {
+            margin-bottom: 10px;
+            opacity: 0.8;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        ul li:hover {
+            opacity: 1;
+            transform: translateX(10px);
+        }
+        .feature-list, .terms-list, .privacy-list {
+            margin: 10px 0;
+        }
+        a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #f9f9f9;
+        }
+        #Email{
+            color: #333;
+        }
+        #link{
+            color: #333;
+        }
+
+        /* Keyframe animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Welcome to H.E.STUDY!</h1>
+    <p>
+        We are dedicated to providing high-quality, flexible, and interactive learning experiences. 
+        Our platform offers a wide range of courses across various disciplines, designed to help 
+        learners of all levels, from beginners to experts, grow their knowledge and skills.
+    </p>
+
+    <h2>Features</h2>
+    <ul class="feature-list">
+        <li><strong>Interactive Learning:</strong> Engage with quizzes, assignments, and hands-on projects to apply what you learn in real-time.</li>
+        <li><strong>Expert Instructors:</strong> Learn from industry experts and professionals with years of experience in their respective fields.</li>
+        <li><strong>Flexible Schedule:</strong> Study at your own pace with our self-paced courses or join live sessions for real-time interaction.</li>
+        <li><strong>Certifications:</strong> Earn certifications upon course completion to boost your career prospects.</li>
+        <li><strong>24/7 Access:</strong> Access all course materials anytime, anywhere, across multiple devices.</li>
+    </ul>
+
+    <h2>Terms and Conditions</h2>
+    <ul class="terms-list">
+        <li><strong>User Responsibilities:</strong> Users are expected to respect the intellectual property of the content and refrain from sharing or distributing materials without permission.</li>
+        <li><strong>Account Security:</strong> Users are responsible for maintaining the security of their accounts and passwords.</li>
+        <li><strong>Refund Policy:</strong> Refunds are only available within 15 days of enrollment, provided less than 30% of the course has been completed.</li>
+        <li><strong>Termination of Service:</strong> We reserve the right to terminate accounts that violate these terms or engage in fraudulent activities.</li>
+        <li><strong>Modification of Terms:</strong> We may update these terms at any time, and it is the user's responsibility to stay informed of changes.</li>
+    </ul>
+
+    <h2>Privacy Policy</h2>
+    <ul class="privacy-list">
+        <li><strong>Personal Data Collection:</strong> We collect personal information such as your name, email, and payment details to provide access to our courses and services.</li>
+        <li><strong>Use of Data:</strong> Your information is used to manage your account, process transactions, and deliver personalized learning experiences.</li>
+        <li><strong>Data Protection:</strong> We implement strong security measures to ensure your data is protected and will not be shared with third parties without your consent.</li>
+        <li><strong>Cookies:</strong> Our platform uses cookies to enhance user experience and analyze site traffic.</li>
+        <li><strong>User Rights:</strong> You have the right to access, modify, or delete your personal data at any time by contacting us.</li>
+    </ul>
+
+    <p>For any inquiries, please reach out to our support team at <a id="Email" href="mailto:highestudyXXXXX@gmail.com" target="_blank" >highestudyXXXXX@gmail.com</a>.</p>
+    <p>Follow us on <a id="link" href="https://www.linkedin.com/in/aman-singh-95a200264" target="_blank">LinkedIn</a>.</p>
+
+</body>
+</html>
